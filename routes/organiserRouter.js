@@ -8,15 +8,18 @@ var bodyparser=require("body-parser");
 organiserRouter.use(bodyparser.json());
 
 var auth = function(req, res, next) {
+    console.log(req.session);
     if(req.session.user==null)
     { 
         //This code will be executed when user not logged in
         //res.redirect(/login);
-        //redirect        
+        //redirect
+        console.log("You are not authenticated");
     }
     else
     {
         // This code is executed if user is logged in
+        console.log("authentication detected");
         console.log(req.session);    
     }
     next();
@@ -28,7 +31,6 @@ var auth = function(req, res, next) {
 organiserRouter.route("/client/:eventID/:organiserID")
 .get(function(req,res,next)
 {
-    console.log("Testing");
     MongoClient.connect(config.url,function(err,database){
             if(err)
             {
@@ -36,7 +38,6 @@ organiserRouter.route("/client/:eventID/:organiserID")
             }
             else
             {
-                console.log("testing");
                 const myAwesomeDB = database.db('qrCalendar')
                 var collection=myAwesomeDB.collection("Events");
                 collection.find({eventName:{$eq:req.params.eventID},organiserName:{$eq:req.params.organiserID}}).toArray(function(err,docs)
@@ -67,6 +68,7 @@ organiserRouter.route("/organiser")
                 const myAwesomeDB = database.db('qrCalendar');
                 console.log(req.body);
                 var collection=myAwesomeDB.collection("Events");
+                //  save 
                 collection.save({organiserName:req.body.organiserName,eventName: req.body.eventName,eventLocation:req.body.eventLocation,startDate:req.body.startDate,startTime:req.body.startTime,endDate:req.body.endDate,endTime:req.body.endTime,email:req.body.email}, function(err,result)
                 {
                     res.end("200");
@@ -113,11 +115,14 @@ organiserRouter.route("/register")
         collections.find({username:{$eq:username}}).toArray(function(err,docs){
             if (docs.length!=0)
             {
+                //This will be executed if the user already exists sending error code 204
                     res.end("204");
             }
             else
             {
-                collections.save({username:req.body.username,password:req.body.password,email:req.body.email}, function(err,result)
+                //  This code will add new user if user does not exist
+                //  The _id generetaed here will act as the organiser _id in Events collection
+                collections.save({organiserName:req.body.organiserName,username:req.body.username,password:req.body.password,email:req.body.email}, function(err,result)
                 {
                     if (err)
                     {
@@ -127,8 +132,6 @@ organiserRouter.route("/register")
                     {
                         res.end("200");    
                     }
-                    
-                    
                 });
             }
         });
