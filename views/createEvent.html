@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0077)https://d396qusza40orc.cloudfront.net/phoenixassets/web-frameworks/index.html -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head 
+         content must come *after* these tags -->
+    
+    <title>Create Event</title>
+    
+            <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../css/mystyle.css" rel="stylesheet" >
+    <link href="../css/createAccount.css" rel="stylesheet" >
+    <link href="../css/createEvent.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+<div class="col-md-8">
+    <div class="form-area">  
+        <form role="form">
+        <br style="clear:both">
+                    <h3 style="margin-bottom: 25px; text-align: center;">Create Event</h3>
+    				<div class="form-group">
+						<input type="text" class="form-control" id="name" name="name" placeholder="Event Name" required>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="location" name="location" placeholder="Event Location" required>
+					</div>
+
+            
+                    <div class="row">
+                            <div class="form-group registration-date">
+                                <label class="control-label col-sm-3" for="registration-date">Date:</label>
+                                <div class="input-group registration-date-time">
+                                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                    <input class="form-control" name="registration_date" id="registration-date" type="date">
+                                    <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+                                    
+                                    <input class="form-control" name="registration_time" id="registration-time" type="time">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
+                                        <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
+                                    </span>
+                                </div>
+                            </div>
+                    </div>
+
+            
+            
+					<div class="form-group">
+						<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+					</div>
+                    <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="message" placeholder="Additional Information" maxlength="140" rows="7"></textarea>
+                        <span class="help-block"></span>                    
+                    </div>
+            
+        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
+        </form>
+    </div>
+</div>
+</div>
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/createEvent.js"></script>
+    <script src="../js/dateAndTime.js"></script>
+    
+    <!--For Date and time-->
+    <script src="http://momentjs.com/downloads/moment-with-locales.js"></script>
+    <script src="http://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+
+
+</body></html>
