@@ -34,7 +34,7 @@ organiserRouter.route("/client/:eventID/:organiserID")
     MongoClient.connect(config.url,function(err,database){
             if(err)
             {
-                console.log("Unable to retrive db object.")   
+                console.log("Unable to retrive db object.");   
             }
             else
             {
@@ -92,13 +92,13 @@ organiserRouter.route("/login/validate")
         console.log(password);
         collections.find({username:{$eq:username},password:{$eq:password}}).toArray(function(err,docs){
             if (docs.length==0)
-                {
+            {
                     res.end("203");
-                }
+            }
             else
             {
                 req.session.user=username;
-                res.end(docs._id);
+                res.redirect("../views/homescreen.html");
             }
         });
         });
@@ -127,14 +127,14 @@ organiserRouter.route("/register")
                 //  The _id generetaed here will act as the organiser _id in Events collection
                 collections.save({organiserName:req.body.organiserName,username:req.body.username,password:req.body.password,email:req.body.email}, function(err,result)
                 {
+                    console.log(req.body);
                     if (err)
                     {
                         console.log("Unable to write user to the data base"); 
                     }
                     else
                     {
-                        res.redirect("../views/login.html");
-                        res.end("200");    
+                        res.redirect("../views/login.html");  
                     }
                 });
             }
