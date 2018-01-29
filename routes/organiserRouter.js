@@ -6,7 +6,7 @@ var config=require("../config.js");
 var bodyparser=require("body-parser");
 
 organiserRouter.use(bodyparser.json());
-
+organiserRouter.use(bodyparser.urlencoded());
 var auth = function(req, res, next) {
     console.log(req.session);
     if(req.session.user==null)
@@ -82,6 +82,7 @@ organiserRouter.route("/organiser")
 
 organiserRouter.route("/login/validate")
 .post(function(req,res,next){
+    console.log(req.body);
     MongoClient.connect(config.url,function(err,database){
             const myDB = database.db('qrCalendar');
             var collections=myDB.collection("User");
@@ -110,6 +111,8 @@ organiserRouter.route("/register")
     MongoClient.connect(config.url,function(err,database){
             const myDB = database.db('qrCalendar');
             var collections=myDB.collection("User");
+        
+            
             var username=req.body.username;
             var password=req.body.password;
         collections.find({username:{$eq:username}}).toArray(function(err,docs){
@@ -130,6 +133,7 @@ organiserRouter.route("/register")
                     }
                     else
                     {
+                        res.redirect("../views/login.html");
                         res.end("200");    
                     }
                 });
