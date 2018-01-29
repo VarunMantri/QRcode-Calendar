@@ -1,0 +1,27 @@
+/organiser			--end point
+Creates a new event/updates existsing
+{
+	_id:organiserID from "Users" Table
+	organiserName
+	eventName
+	startDate
+	startTime
+	endDate
+	endTime
+}
+
+
+/register			--end point
+Creates a new user
+{
+	_id: organiserID (generated here)
+	organiserName
+	username
+	password
+	email
+	
+}
+
+/login/validate			--end point
+Checks if the user exists in db.
+Uses sessions to keep track of the user
