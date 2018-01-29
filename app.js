@@ -6,6 +6,7 @@ var config=require("./config.js");
 var app=express();
 
 var session = require('express-session');
+app.use(express.static(__dirname));
 app.use(session({
     secret: '2C44-4D44-WppQ38S',
     resave: true,

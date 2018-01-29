@@ -133,6 +133,7 @@ organiserRouter.route("/register")
                     }
                     else
                     {
+                        res.redirect("../views/login.html");
                         res.end("200");    
                     }
                 });
