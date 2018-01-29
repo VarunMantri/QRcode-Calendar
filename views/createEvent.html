@@ -23,7 +23,7 @@
 <div class="container">
 <div class="col-md-8">
     <div class="form-area">  
-        <form role="form">
+        <form role="form" actions = "#" method="GET" id = "create_Event" name = "create_Event">
         <br style="clear:both">
                     <h3 style="margin-bottom: 25px; text-align: center;">Create Event</h3>
     				<div class="form-group">
@@ -36,20 +36,29 @@
             
                     <div class="row">
                             <div class="form-group registration-date">
-                                <label class="control-label col-sm-3" for="registration-date">Date:</label>
+                                <label class="control-label col-sm-3" for="registration-date">Start Date:</label>
                                 <div class="input-group registration-date-time">
                                     <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-                                    <input class="form-control" name="registration_date" id="registration-date" type="date">
+                                    <input class="form-control" name="start_date" id="start_date" type="date" required>
                                     <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
                                     
-                                    <input class="form-control" name="registration_time" id="registration-time" type="time">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button" onclick="addNow()"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Now</button>
-                                        <button class="btn btn-default" type="button" onclick="stopNow()"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Stop</button>
-                                    </span>
+                                    <input class="form-control" name="start_time" id="start_time" type="time" required>
                                 </div>
                             </div>
                     </div>
+            
+                <div class="row">
+                                <div class="form-group registration-date">
+                                    <label class="control-label col-sm-3" for="registration-date">End Date:</label>
+                                    <div class="input-group registration-date-time">
+                                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+                                        <input class="form-control" name="end_date" id="end_date" type="date" required>
+                                        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></span>
+
+                                        <input class="form-control" name="end_time" id="end_time" type="time" required>
+                                    </div>
+                                </div>
+                        </div>
 
             
             
@@ -57,14 +66,14 @@
 						<input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" required>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 					</div>
                     <div class="form-group">
                     <textarea class="form-control" type="textarea" id="message" placeholder="Additional Information" maxlength="140" rows="7"></textarea>
                         <span class="help-block"></span>                    
                     </div>
             
-        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
+        <button type="submit" id="submit" name="submit" class="btn btn-primary pull-right">Submit Form</button>
         </form>
     </div>
 </div>
